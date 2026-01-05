@@ -12,7 +12,7 @@ export function header() {
 
 export function sectionHero() {
     return `
-        <section>
+        <section class="seccion-iniciar-juego">
             <h1>Diertete adivinando una frase de tu personaje favorito</h1>
             <button class="comenzar-juego">Jugar</button>
         </section>
@@ -21,7 +21,7 @@ export function sectionHero() {
 
 export function sectionChooseCharacter() {
     return `
-       <section>
+       <section class="seccion-elegir-personaje">
             <h1>Elige Tu Personaje Favorito</h1>
             <div class="container"></div>
             <button class="jugar">Jugar</button>

@@ -4,25 +4,27 @@ import { random } from './utils.js';
 
 const root = document.querySelector('#root');
 
-async function startRoot() {
-    renderLayout()
-    const objetos = await extraerObjetos()
-    mostrarCard(objetos)
-    //elegirFrasesAleatorias(objetos)
-    jugar(objetos)
-};
-
-startRoot();
+renderLayout()    
+comenzarJuego();
 
 function renderLayout() {
     root.innerHTML =  `
         ${header()}
             <main>
                 ${sectionHero()}
-                ${sectionChooseCharacter()}
             </main>
         ${footer()}
     `
+};
+
+function comenzarJuego() {
+    const botonJugar = document.querySelector('.comenzar-juego');
+    botonJugar.addEventListener('click', async () => {
+        renderizar(sectionChooseCharacter());
+        const objetos = await extraerObjetos()
+        mostrarCard(objetos)
+        jugar(objetos)
+    })
 };
 
 async function extraerObjetos() {
@@ -38,7 +40,6 @@ function mostrarCard(objetos) {
 };
 
 function jugar(personajes) {
-    const main = document.querySelector('main');
     const elegir = document.querySelectorAll('.button');
     const botonJugar = document.querySelector('.jugar');
     botonJugar.addEventListener("click", () => {
@@ -46,7 +47,7 @@ function jugar(personajes) {
             if (boton.checked == true) {
                 const frasePersonaje = extraerFrasePersonaje(personajes, boton.id);
                 const frasesAleatorias = elegirFrasesAleatorias(personajes);
-                main.innerHTML += sectionGuessPhrase(boton.id, frasesAleatorias, frasePersonaje);
+                renderizar(sectionGuessPhrase(boton.id, frasesAleatorias, frasePersonaje));
                 verificarEleccion(frasePersonaje);
             };
         })
@@ -102,5 +103,11 @@ function verificarEleccion(frase) {
         });
     });
 };
+
+function renderizar(seccion) {
+    const main = document.querySelector('main');
+    main.innerHTML = "";
+    main.innerHTML = seccion;
+}
 
 
