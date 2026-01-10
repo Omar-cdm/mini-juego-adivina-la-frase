@@ -1,5 +1,5 @@
 import { traerObejto } from './api.js';
-import { header, sectionHero, sectionChooseCharacter, createCard, sectionGuessPhrase, footer } from './components-root.js';
+import { header, sectionHero, sectionChooseCharacter, createCard, sectionGuessPhrase, sectionGameEnd, footer } from './components-root.js';
 import { random } from './utils.js';
 
 const root = document.querySelector('#root');
@@ -92,11 +92,15 @@ function verificarEleccion(frase) {
     botonesFrases.forEach(boton => {
         boton.addEventListener('click', (e) => {
             if (e.target.textContent == frase) {
-                alert("Ganaste")
+                e.target.classList.toggle('bg-yellow-100')
+                e.target.classList.toggle('bg-green-400')
+                reiniciarJuego("Winner");
             } else if (e.target.textContent != frase) {
                 contador++
-                if (contador == 2) {
-                    alert("Perdiste")
+                e.target.classList.toggle('bg-yellow-100')
+                e.target.classList.toggle('bg-red-400')
+                if (contador == 3) {
+                    reiniciarJuego("Sorry, You Lost");
                 };
             }
             boton.disabled = true;
@@ -108,6 +112,15 @@ function renderizar(seccion) {
     const main = document.querySelector('main');
     main.innerHTML = "";
     main.innerHTML = seccion;
-}
+};
+
+function reiniciarJuego(resultado) {
+    renderizar(sectionGameEnd(resultado));
+    const botonReiniciar = document.querySelector('.reiniciar');
+    botonReiniciar.addEventListener('click', () => {
+        window.location.reload();
+    });
+    
+};
 
 

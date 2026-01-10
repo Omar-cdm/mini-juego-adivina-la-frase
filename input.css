@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+    --animate-entrance-top-to-bottom: entrance-top-to-bottom 1s ease;
+
+    @keyframes entrance-top-to-bottom {
+        0% {
+            top: -64px;
+            opacity: 0;
+        }
+        100% {
+            top: 8px;
+            opacity: 1; 
+        }
+    }
+}
