@@ -18,7 +18,7 @@ export const CreateCard: React.FC<{ character: any, selectCharacter: (n: any) =>
                 className="hidden peer"
                 onChange={() => {selectCharacter(character.name); setPhase(character.phrases[random(0, character.phrases.length - 1)])}}
             />
-            <label className={`bg-orange-400 w-1/2 flex justify-center items-center text-white rounded-xl p-1 box-boder my-2 transition delay-110 duration-400 ease peer-checked:bg-green-600 hover:cursor-pointer hover:bg-green-600 hover:scale-1`} htmlFor={character.name}>
+            <label className="bg-orange-400 w-1/2 flex justify-center items-center text-white rounded-xl p-1 box-boder my-2 transition delay-110 duration-400 ease peer-checked:bg-green-600 hover:cursor-pointer hover:bg-green-600" htmlFor={character.name}>
                 <p className="text-sm">Choose</p>
             </label>
         </article>

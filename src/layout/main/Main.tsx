@@ -34,7 +34,7 @@ export default function Main() {
         for(let i = 0; i < 4; i++) {
             array.push(characterNew[random(0, characters.length - 1)])
         }
-
+        console.log(array)
         array.forEach(c => {arrayPhrases.push(c.phrases[random(0, c.phrases.length - 1)])})
 
         return arrayPhrases
